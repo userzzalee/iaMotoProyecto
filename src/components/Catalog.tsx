@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { SearchBar } from './SearchBar';
 import { Filters } from './Filters';
 import { MotoCard } from './MotoCard';
+import { Moto } from '../types';
+import ProductModal from './ProductModal';
 import { motos, motoTypes, priceRanges } from '../data/motos';
 
 interface CatalogProps {
@@ -11,6 +13,7 @@ interface CatalogProps {
 type LayoutType = 'grid' | 'vertical';
 
 export const Catalog = ({ onAddToCart }: CatalogProps) => {
+  const [selectedMoto, setSelectedMoto] = useState<Moto | null>(null);
   const [viewLayout, setViewLayout] = useState<LayoutType>(() => {
     return (localStorage.getItem('motoLayout') as LayoutType) || 'grid';
   });
@@ -59,7 +62,7 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
   };
 
   return (
-    <div id="catalogo" style={{ 
+    <div id="catalogo" style={{
       backgroundColor: 'var(--background)',
       backgroundImage: `radial-gradient(circle at 10% 20%, rgba(26,95,122,0.06), transparent 12%),
                         radial-gradient(circle at 90% 80%, rgba(37,99,235,0.04), transparent 18%),
@@ -241,7 +244,7 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
           <div style={getGridStyle()}>
             {filteredMotos.map(moto => (
               <div style={{ padding: viewLayout === 'grid' ? '0' : '0' }} key={moto.id}>
-                <MotoCard key={moto.id} moto={moto} onAddToCart={onAddToCart} layout={viewLayout === 'vertical' ? 'list' : 'grid'} />
+                <MotoCard key={moto.id} moto={moto} onOpen={(m) => setSelectedMoto(m)} layout={viewLayout === 'vertical' ? 'list' : 'grid'} />
               </div>
             ))}
           </div>
@@ -273,6 +276,13 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
               Intenta ajustar los filtros o realiza una nueva búsqueda
             </p>
           </div>
+        )}
+        {selectedMoto && (
+          <ProductModal
+            moto={selectedMoto}
+            onClose={() => setSelectedMoto(null)}
+            onAddToCart={(m) => { onAddToCart(m); setSelectedMoto(null); }}
+          />
         )}
       </div>
     </div>
