@@ -46,7 +46,7 @@ export const Header = ({
                 letterSpacing: '-0.025em',
               }}
             >
-              OTROMOTOS
+              ALYX
             </div>
 
             <nav aria-label="Navegación principal">

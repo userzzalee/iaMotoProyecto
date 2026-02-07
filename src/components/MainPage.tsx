@@ -78,7 +78,7 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
                 letterSpacing: '-0.025em',
                 lineHeight: 1.1
               }}>
-                OTROMOTOS
+                ALYX
               </h1>
 
               <p style={{
@@ -303,7 +303,8 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
 
       {/* Nosotros Section */}
       <div id="nosotros" style={{ 
-        padding: 'var(--space-20) 0', 
+        paddingTop: 'var(--space-24)',
+        paddingBottom: 'var(--space-20)', 
         background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
         position: 'relative',
         overflow: 'hidden'
@@ -361,7 +362,7 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
               letterSpacing: '-0.025em',
               lineHeight: 1.1
             }}>
-              Sobre OtroMotos
+              Sobre Alyx
             </h1>
             <p style={{ 
               fontSize: 'var(--text-lg)', 
@@ -433,7 +434,7 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
                 fontFamily: 'var(--font-secondary)',
                 fontSize: 'var(--text-base)'
               }}>
-                Fundada en 2013, OtroMotos nació de la pasión de un grupo de expertos que querían crear algo diferente. Lo que comenzó como un pequeño taller ha evolucionado hasta convertirse en un referente del sector.
+                Fundada en 2013, Alyx nació de la pasión de un grupo de expertos que querían crear algo diferente. Lo que comenzó como un pequeño taller ha evolucionado hasta convertirse en un referente del sector.
               </p>
               <p style={{ 
                 lineHeight: '1.7', 
