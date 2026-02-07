@@ -1,18 +1,17 @@
 import { useState, useEffect, useMemo } from 'react';
 import { CartProvider, useCart } from './context/CartContext';
 import { Header } from './components/Header';
-import { HomePage } from './components/HomePage';
+import { MainPage } from './components/MainPage';
 import { SearchBar } from './components/SearchBar';
 import { Filters } from './components/Filters';
 import { MotoCard } from './components/MotoCard';
 import { Cart } from './components/Cart';
-import { Nosotros } from './components/Nosotros';
 import { Contacto } from './components/Contacto';
 import { ViewPreferences } from './components/ViewPreferences';
 import { motos, motoTypes, priceRanges } from './data/motos';
 
 type LayoutType = 'horizontal' | 'vertical' | 'grid';
-type PageType = 'inicio' | 'catalogo' | 'nosotros' | 'contacto';
+type PageType = 'inicio' | 'catalogo' | 'contacto';
 
 function AppContent(): JSX.Element {
   const [currentPage, setCurrentPage] = useState<PageType>('inicio');
@@ -66,7 +65,7 @@ function AppContent(): JSX.Element {
         onNavigate={(p) => setCurrentPage(p as any)}
       />
 
-      {currentPage === 'inicio' && <HomePage />}
+      {currentPage === 'inicio' && <MainPage />}
 
       {currentPage === 'catalogo' && (
         <div id="catalogo" style={{ background: 'var(--background)' }}>
@@ -104,7 +103,6 @@ function AppContent(): JSX.Element {
         </div>
       )}
 
-      {currentPage === 'nosotros' && <Nosotros />}
       {currentPage === 'contacto' && <Contacto />}
 
       {showCart && (

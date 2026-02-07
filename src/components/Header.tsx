@@ -2,7 +2,7 @@ interface HeaderProps {
   cartItemCount: number;
   onCartClick: () => void;
   currentPage: string;
-  onNavigate: (page: 'inicio' | 'catalogo' | 'nosotros' | 'contacto') => void;
+  onNavigate: (page: 'inicio' | 'catalogo' | 'contacto') => void;
 }
 
 export const Header = ({
@@ -76,18 +76,6 @@ export const Header = ({
                     style={linkStyle('catalogo')}
                   >
                     Catálogo
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#nosotros"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate('nosotros');
-                    }}
-                    style={linkStyle('nosotros')}
-                  >
-                    Nosotros
                   </a>
                 </li>
                 <li>
