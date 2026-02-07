@@ -387,7 +387,7 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
             {/* Historia */}
             <div style={{
               background: 'rgba(255, 255, 255, 0.7)',
-              backdrop: 'blur(10px)',
+              backdropFilter: 'blur(10px)',
               border: '1px solid rgba(26, 95, 122, 0.1)',
               borderRadius: 'var(--radius-xl)',
               padding: 'var(--space-10)',
@@ -449,7 +449,7 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
             {/* Filosofía */}
             <div style={{
               background: 'rgba(255, 255, 255, 0.7)',
-              backdrop: 'blur(10px)',
+              backdropFilter: 'blur(10px)',
               border: '1px solid rgba(26, 95, 122, 0.1)',
               borderRadius: 'var(--radius-xl)',
               padding: 'var(--space-10)',
