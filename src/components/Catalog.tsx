@@ -45,13 +45,13 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
         return {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 'var(--space-6)',
+          gap: 'var(--space-8)',
         };
       case 'vertical':
         return {
           display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: 'var(--space-6)',
+          gap: 'var(--space-8)'
         };
       default:
         return {};
@@ -60,18 +60,34 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
 
   return (
     <div id="catalogo" style={{ 
-      background: 'linear-gradient(180deg, var(--background) 0%, #f8fafc 100%)',
+      backgroundColor: 'var(--background)',
+      backgroundImage: `radial-gradient(circle at 10% 20%, rgba(26,95,122,0.06), transparent 12%),
+                        radial-gradient(circle at 90% 80%, rgba(37,99,235,0.04), transparent 18%),
+                        linear-gradient(180deg, rgba(247,250,252,1) 0%, #f3f6f9 100%),
+                        repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 60px)`,
+      backgroundBlendMode: 'normal, normal, normal, overlay',
       minHeight: '100vh',
       paddingTop: 'var(--space-12)',
       paddingBottom: 'var(--space-20)'
     }}>
-      <div className="container">
+      <div className="container" style={{
+        maxWidth: 1200,
+        margin: '0 auto',
+        padding: 'var(--space-8)',
+        background: 'rgba(255,255,255,0.6)',
+        backdropFilter: 'saturate(120%) blur(6px)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: '0 12px 40px rgba(2,6,23,0.06)'
+      }}>
         {/* Header */}
         <div style={{ marginBottom: 'var(--space-12)', textAlign: 'center' }}>
           <h1 style={{
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
             fontWeight: '800',
-            color: 'var(--text-primary)',
+            background: 'linear-gradient(90deg, #0ea5a3, #1d4ed8)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
             fontFamily: 'var(--font-display)',
             marginBottom: 'var(--space-4)',
             letterSpacing: '-0.025em'
@@ -217,33 +233,16 @@ export const Catalog = ({ onAddToCart }: CatalogProps) => {
           </div>
         )}
 
-        {/* Results Counter */}
-        <div style={{
-          marginBottom: 'var(--space-6)',
-          padding: 'var(--space-4)',
-          background: 'rgba(26, 95, 122, 0.05)',
-          borderRadius: 'var(--radius-md)',
-          border: '1px solid rgba(26, 95, 122, 0.1)'
-        }}>
-          <p style={{
-            margin: 0,
-            fontSize: 'var(--text-sm)',
-            color: 'var(--text-secondary)',
-            fontFamily: 'var(--font-secondary)'
-          }}>
-            <strong style={{ color: 'var(--text-primary)', fontWeight: '700' }}>
-              {filteredMotos.length}
-            </strong>
-            {' '}
-            {filteredMotos.length === 1 ? 'moto encontrada' : 'motos encontradas'}
-          </p>
-        </div>
+        {/* Spacer (results counter removed as requested) */}
+        <div style={{ height: '12px' }} />
 
         {/* Motos Grid/List */}
         {filteredMotos.length > 0 ? (
           <div style={getGridStyle()}>
             {filteredMotos.map(moto => (
-              <MotoCard key={moto.id} moto={moto} onAddToCart={onAddToCart} />
+              <div style={{ padding: viewLayout === 'grid' ? '0' : '0' }} key={moto.id}>
+                <MotoCard key={moto.id} moto={moto} onAddToCart={onAddToCart} layout={viewLayout === 'vertical' ? 'list' : 'grid'} />
+              </div>
             ))}
           </div>
         ) : (

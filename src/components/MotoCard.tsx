@@ -3,154 +3,109 @@ import { Moto } from '../types';
 interface MotoCardProps {
   moto: Moto;
   onAddToCart: (moto: Moto) => void;
+  layout?: 'grid' | 'list';
 }
 
-export const MotoCard = ({ moto, onAddToCart }: MotoCardProps) => {
+export const MotoCard = ({ moto, onAddToCart, layout = 'grid' }: MotoCardProps) => {
+  // Lista: imagen a la izquierda, contenido a la derecha
+  if (layout === 'list') {
+    return (
+      <article style={{
+        display: 'flex',
+        gap: 16,
+        alignItems: 'center',
+        padding: 'var(--space-4)',
+        borderRadius: 'var(--radius-lg)',
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(248,250,252,0.02))',
+        border: '1px solid rgba(16,24,32,0.04)'
+      }}>
+        <div style={{ flex: '0 0 160px', height: 100, overflow: 'hidden', borderRadius: 12 }}>
+          <img src={moto.imagen} alt={moto.nombre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '.06em' }}>{moto.marca} · {moto.modelo}</div>
+          <h3 style={{ margin: 0, fontSize: '1rem', color: 'var(--text-primary)', fontWeight: 700 }}>{moto.nombre}</h3>
+          <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 13 }}>{moto.descripcion}</p>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <span style={{ background: 'rgba(37,99,235,0.08)', color: '#2563eb', padding: '6px 8px', borderRadius: 8, fontWeight: 700, fontSize: 12 }}>{moto.tipo}</span>
+              <span style={{ background: 'rgba(15,23,42,0.04)', color: 'var(--text-muted)', padding: '6px 8px', borderRadius: 8, fontSize: 12 }}>{moto.cilindrada}cc</span>
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <div style={{ fontWeight: 800, color: 'var(--primary)' }}>€{moto.precio.toLocaleString('es-ES')}</div>
+              {moto.stock > 0 ? (
+                <button onClick={() => onAddToCart(moto)} style={{ background: 'var(--primary)', color: '#fff', padding: '8px 12px', borderRadius: 8, border: 'none', fontWeight: 700, cursor: 'pointer' }}>Añadir</button>
+              ) : (
+                <div style={{ padding: '8px 12px', borderRadius: 8, background: '#f1f5f9', color: '#94a3b8' }}>Agotado</div>
+              )}
+            </div>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // Grid: imagen arriba (dentro del flujo), sin solapamientos
   return (
-    <div className="card" style={{ 
+    <div style={{ 
+      position: 'relative',
       transition: 'all var(--transition-slow)',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      borderRadius: 'var(--radius-lg)',
+      background: 'linear-gradient(180deg, rgba(255,249,240,1), rgba(245,250,255,1))',
+      border: '1px solid rgba(16,24,32,0.04)'
     }}>
-      <div style={{ 
-        height: '240px', 
-        overflow: 'hidden',
-        position: 'relative'
-      }}>
-        <img 
-          src={moto.imagen} 
+      <div style={{ position: 'absolute', right: -36, top: -28, width: 120, height: 120, borderRadius: '50%', pointerEvents: 'none', background: 'radial-gradient(circle at 30% 30%, rgba(37,99,235,0.14), transparent 40%)' }} />
+
+      <div style={{ height: 180, overflow: 'hidden', position: 'relative' }}>
+        <img
+          src={moto.imagen}
           alt={moto.nombre}
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover',
-            transition: 'transform var(--transition-slow)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-          }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .45s ease' }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
         />
-        
+        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 56, background: 'linear-gradient(180deg, rgba(255,255,255,0), rgba(12,58,84,0.06))' }} />
         {moto.stock <= 3 && (
           <div style={{
             position: 'absolute',
-            top: 'var(--space-4)',
-            right: 'var(--space-4)',
-            background: 'var(--danger)',
-            color: 'white',
-            padding: 'var(--space-1) var(--space-2)',
-            borderRadius: 'var(--radius)',
-            fontSize: 'var(--text-xs)',
-            fontWeight: '600',
-            boxShadow: 'var(--shadow-md)'
-          }}>
-            Últimas unidades
-          </div>
+            top: 12,
+            right: 12,
+            background: 'linear-gradient(90deg,#ff7a7a,#ff4d4d)',
+            color: '#fff',
+            padding: '6px 10px',
+            borderRadius: 999,
+            fontSize: 12,
+            fontWeight: 800
+          }}>Últimas</div>
         )}
       </div>
-      
-      <div style={{ 
-        padding: 'var(--space-6)', 
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column'
-      }}>
-        <div style={{ 
-          fontSize: 'var(--text-sm)', 
-          color: 'var(--text-muted)',
-          marginBottom: 'var(--space-2)',
-          fontFamily: 'var(--font-secondary)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em'
-        }}>
-          {moto.marca} {moto.modelo}
-        </div>
-        
-        <h3 style={{ 
-          fontSize: 'var(--text-lg)', 
-          fontWeight: '600', 
-          marginBottom: 'var(--space-3)',
-          color: 'var(--text-primary)',
-          fontFamily: 'var(--font-primary)',
-          lineHeight: '1.3'
-        }}>
-          {moto.nombre}
-        </h3>
-        
-        <div className="flex items-center gap-2" style={{ marginBottom: 'var(--space-4)' }}>
-          <span className="badge" style={{
-            background: 'var(--primary-light)',
-            color: 'var(--primary)',
-            fontWeight: '500',
-            textTransform: 'capitalize'
-          }}>
-            {moto.tipo}
-          </span>
-          <span className="badge" style={{
-            background: 'var(--secondary-100)',
-            color: 'var(--secondary-700)',
-            fontWeight: '500'
-          }}>
-            {moto.cilindrada}cc
-          </span>
-        </div>
-        
-        <p style={{ 
-          fontSize: 'var(--text-sm)', 
-          color: 'var(--text-secondary)',
-          marginBottom: 'var(--space-6)',
-          fontFamily: 'var(--font-secondary)',
-          lineHeight: '1.5',
-          flex: 1
-        }}>
-          {moto.descripcion}
-        </p>
-        
-        <div className="flex justify-between items-end" style={{ gap: 'var(--space-4)' }}>
-          <div>
-            <div style={{ 
-              fontSize: 'var(--text-2xl)', 
-              fontWeight: '700',
-              color: 'var(--primary)',
-              fontFamily: 'var(--font-display)'
-            }}>
-              €{moto.precio.toLocaleString('es-ES')}
-            </div>
-            {moto.stock > 0 && (
-              <div style={{ 
-                fontSize: 'var(--text-xs)', 
-                color: 'var(--text-muted)',
-                marginTop: 'var(--space-1)',
-                fontFamily: 'var(--font-secondary)'
-              }}>
-                Stock: {moto.stock} unidades
-              </div>
+
+      <div style={{ padding: 'var(--space-5)', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+        <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '.06em' }}>{moto.marca} · {moto.modelo}</div>
+        <h3 style={{ margin: 0, fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>{moto.nombre}</h3>
+        <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 13, lineHeight: 1.4, marginTop: 6 }}>{moto.descripcion}</p>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <span style={{ background: 'linear-gradient(90deg,#7dd3fc,#60a5fa)', color: '#064e3b', padding: '6px 8px', borderRadius: 8, fontWeight: 700, fontSize: 12 }}>{moto.tipo}</span>
+            <span style={{ background: 'rgba(15,23,42,0.04)', color: 'var(--text-muted)', padding: '6px 8px', borderRadius: 8, fontSize: 12 }}>{moto.cilindrada}cc</span>
+          </div>
+
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <div style={{ fontWeight: 800, color: 'var(--primary)' }}>€{moto.precio.toLocaleString('es-ES')}</div>
+            {moto.stock > 0 ? (
+              <button onClick={() => onAddToCart(moto)} style={{ padding: '8px 12px', borderRadius: 8, background: 'linear-gradient(90deg,var(--primary),#1a5f7a)', color: '#fff', border: 'none', fontWeight: 700, cursor: 'pointer' }}>Añadir</button>
+            ) : (
+              <div style={{ padding: '8px 12px', borderRadius: 8, background: '#f1f5f9', color: '#94a3b8' }}>Agotado</div>
             )}
           </div>
-          
-          <button 
-            onClick={() => onAddToCart(moto)}
-            className="btn btn-primary"
-            style={{ 
-              padding: 'var(--space-3) var(--space-5)',
-              fontSize: 'var(--text-sm)',
-              fontWeight: '500',
-              boxShadow: 'var(--shadow-sm)',
-              minWidth: '120px',
-              height: '44px'
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="9" cy="21" r="1"></circle>
-              <path d="M9 7V3m0 0a2 2 0 0 1 2 2 2 0 0 1-2 2m6 0a2 2 0 0 1 2 2 2 0 0 1-2 2"></path>
-            </svg>
-            Añadir
-          </button>
         </div>
       </div>
     </div>
