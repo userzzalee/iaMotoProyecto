@@ -304,419 +304,447 @@ export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalo
       {/* Nosotros Section */}
       <div id="nosotros" style={{ 
         padding: 'var(--space-20) 0', 
-        background: 'var(--surface)',
-        minHeight: '80vh'
+        background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div className="container">
-          <div className="text-center mb-8">
+        {/* Background decoration */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(26, 95, 122, 0.08) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none'
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', marginBottom: 'var(--space-16)' }}>
+            <div style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, var(--primary), #1a5f7a)',
+              padding: 'var(--space-3) var(--space-6)',
+              borderRadius: 'var(--radius-full)',
+              marginBottom: 'var(--space-6)'
+            }}>
+              <span style={{
+                fontSize: 'var(--text-xs)',
+                fontWeight: '700',
+                color: '#fff',
+                textTransform: 'uppercase',
+                letterSpacing: '1.5px',
+                fontFamily: 'var(--font-primary)'
+              }}>
+                Nuestra Historia
+              </span>
+            </div>
+
             <h1 style={{ 
-              fontSize: 'var(--text-5xl)', 
-              fontWeight: '700', 
-              marginBottom: 'var(--space-4)',
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: '800', 
+              marginBottom: 'var(--space-6)',
               color: 'var(--text-primary)',
               fontFamily: 'var(--font-display)',
-              letterSpacing: '-0.025em'
+              letterSpacing: '-0.025em',
+              lineHeight: 1.1
             }}>
               Sobre OtroMotos
             </h1>
             <p style={{ 
-              fontSize: 'var(--text-xl)', 
+              fontSize: 'var(--text-lg)', 
               color: 'var(--text-secondary)',
               maxWidth: '600px',
               margin: '0 auto',
-              lineHeight: '1.6',
+              lineHeight: '1.7',
               fontFamily: 'var(--font-secondary)'
             }}>
-              Tu tienda especializada con más de una década de experiencia
+              Más de una década de pasión, experiencia y compromiso con nuestros clientes
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h2 style={{ 
-                fontSize: 'var(--text-3xl)', 
-                fontWeight: '600', 
+          {/* History & Philosophy Section */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'var(--space-8)',
+            marginBottom: 'var(--space-16)',
+            gridTemplateRows: 'auto'
+          }}>
+            {/* Historia */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.7)',
+              backdrop: 'blur(10px)',
+              border: '1px solid rgba(26, 95, 122, 0.1)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-10)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.04)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.04)';
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                background: 'linear-gradient(135deg, var(--primary), #1a5f7a)',
+                borderRadius: 'var(--radius-lg)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 marginBottom: 'var(--space-6)',
-                color: 'var(--primary)',
+                boxShadow: '0 10px 25px rgba(26, 95, 122, 0.2)'
+              }}>
+                <span style={{ fontSize: '28px' }}>📖</span>
+              </div>
+
+              <h3 style={{ 
+                fontSize: 'var(--text-2xl)', 
+                fontWeight: '700', 
+                marginBottom: 'var(--space-4)',
+                color: 'var(--text-primary)',
                 fontFamily: 'var(--font-primary)'
               }}>
                 Nuestra Historia
-              </h2>
+              </h3>
               <p style={{ 
-                lineHeight: '1.6', 
+                lineHeight: '1.7', 
                 color: 'var(--text-secondary)',
                 marginBottom: 'var(--space-4)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--text-base)'
               }}>
-                Fundada en 2013, OtroMotos nació de la pasión de un grupo de expertos en motocicletas que 
-                querían crear un espacio donde los verdaderos amantes de las dos ruedas pudieran encontrar 
-                no solo una moto, sino la experiencia de conducción perfecta.
+                Fundada en 2013, OtroMotos nació de la pasión de un grupo de expertos que querían crear algo diferente. Lo que comenzó como un pequeño taller ha evolucionado hasta convertirse en un referente del sector.
               </p>
               <p style={{ 
-                lineHeight: '1.6', 
-                color: 'var(--text-secondary)',
-                fontFamily: 'var(--font-secondary)'
+                lineHeight: '1.7', 
+                color: '#64748b',
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--text-sm)'
               }}>
-                Lo que comenzó como un pequeño taller especializado ha crecido hasta convertirnos en referente del sector, 
-                manteniendo siempre nuestros valores originales: calidad técnica, atención personalizada y 
-                servicio postventa excepcional.
+                Hoy contamos con cientos de clientes satisfechos y una reputación basada en la confianza, la calidad y la excelencia técnica.
               </p>
             </div>
 
-            <div>
-              <h2 style={{ 
-                fontSize: 'var(--text-3xl)', 
-                fontWeight: '600', 
+            {/* Filosofía */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.7)',
+              backdrop: 'blur(10px)',
+              border: '1px solid rgba(26, 95, 122, 0.1)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-10)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.04)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.04)';
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                background: 'linear-gradient(135deg, #3b82f6, #1e40af)',
+                borderRadius: 'var(--radius-lg)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 marginBottom: 'var(--space-6)',
-                color: 'var(--primary)',
+                boxShadow: '0 10px 25px rgba(59, 130, 246, 0.2)'
+              }}>
+                <span style={{ fontSize: '28px' }}>💡</span>
+              </div>
+
+              <h3 style={{ 
+                fontSize: 'var(--text-2xl)', 
+                fontWeight: '700', 
+                marginBottom: 'var(--space-4)',
+                color: 'var(--text-primary)',
                 fontFamily: 'var(--font-primary)'
               }}>
                 Nuestra Filosofía
-              </h2>
+              </h3>
               <p style={{ 
-                lineHeight: '1.6', 
+                lineHeight: '1.7', 
                 color: 'var(--text-secondary)',
                 marginBottom: 'var(--space-4)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--text-base)'
               }}>
-                En OtroMotos creemos que cada moto es mucho más que un vehículo: es una extensión de la personalidad 
-                de su dueño. Por eso, nuestro compromiso va más allá de la venta.
+                Creemos que cada moto es más que un vehículo: es libertad, pasión y una extensión de ti. Por eso, nuestro compromiso va más allá de vender.
               </p>
               <p style={{ 
-                lineHeight: '1.6', 
-                color: 'var(--text-secondary)',
-                fontFamily: 'var(--font-secondary)'
+                lineHeight: '1.7', 
+                color: '#64748b',
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--text-sm)'
               }}>
-                Buscamos entender tus necesidades, asesorarte con honestidad y acompañarte en cada etapa del proceso, 
-                desde la elección hasta el mantenimiento.
+                Buscamos entender tus necesidades, asesorarte con honestidad y acompañarte en cada etapa del viaje, desde la elección hasta el mantenimiento.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="card text-center" style={{ padding: 'var(--space-8)', textAlign: 'center' }}>
-              <div style={{ 
-                fontSize: 'var(--text-4xl)', 
-                marginBottom: 'var(--space-4)',
-                color: 'var(--primary)'
-              }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M9 12l2 2 4-4m6 2a2 2 0 0 1 2 2 2 0 0 1-2 2m-6 9a2 2 0 0 1-2 2 2 2 0 0 1-2-2m6 4a2 2 0 0 1 2 2 2 0 0 1-2-2"></path>
-                </svg>
-              </div>
-              <h3 style={{ 
-                fontSize: 'var(--text-xl)', 
-                fontWeight: '600', 
-                marginBottom: 'var(--space-3)',
-                color: 'var(--text-primary)'
-              }}>
-                Excelencia Técnica
-              </h3>
-              <p style={{ 
-                fontSize: 'var(--text-sm)', 
-                color: 'var(--text-secondary)',
-                lineHeight: '1.5',
-                fontFamily: 'var(--font-secondary)'
-              }}>
-                Selección rigurosa de las mejores marcas y modelos, 
-                garantizando calidad y fiabilidad en cada venta.
-              </p>
-            </div>
-
-            <div className="card text-center" style={{ padding: 'var(--space-8)', textAlign: 'center' }}>
-              <div style={{ 
-                fontSize: 'var(--text-4xl)', 
-                marginBottom: 'var(--space-4)',
-                color: 'var(--primary)'
-              }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="1"></circle>
-                  <path d="M21 16a4 4 0 0 0-4-4M9 5a4 4 0 0 1 4 4M5 12a7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7 7 7 0 0 1-7-7"></path>
-                </svg>
-              </div>
-              <h3 style={{ 
-                fontSize: 'var(--text-xl)', 
-                fontWeight: '600', 
-                marginBottom: 'var(--space-3)',
-                color: 'var(--text-primary)'
-              }}>
-                Confianza Garantizada
-              </h3>
-              <p style={{ 
-                fontSize: 'var(--text-sm)', 
-                color: 'var(--text-secondary)',
-                lineHeight: '1.5',
-                fontFamily: 'var(--font-secondary)'
-              }}>
-                Más de 5,000 clientes confían en nosotros para encontrar 
-                su compañera de aventuras.
-              </p>
-            </div>
-
-            <div className="card text-center" style={{ padding: 'var(--space-8)', textAlign: 'center' }}>
-              <div style={{ 
-                fontSize: 'var(--text-4xl)', 
-                marginBottom: 'var(--space-4)',
-                color: 'var(--primary)'
-              }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2v20m10-10H2"></path>
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
-              </div>
-              <h3 style={{ 
-                fontSize: 'var(--text-xl)', 
-                fontWeight: '600', 
-                marginBottom: 'var(--space-3)',
-                color: 'var(--text-primary)'
-              }}>
-                Servicio Premium
-              </h3>
-              <p style={{ 
-                fontSize: 'var(--text-sm)', 
-                color: 'var(--text-secondary)',
-                lineHeight: '1.5',
-                fontFamily: 'var(--font-secondary)'
-              }}>
-                Nuestro equipo de expertos está disponible para asesorarte y 
-                garantizar tu satisfacción total.
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={{ padding: 'var(--space-8)' }}>
+          {/* Valores Section */}
+          <div style={{ marginBottom: 'var(--space-16)' }}>
             <h2 style={{ 
               fontSize: 'var(--text-3xl)', 
-              fontWeight: '600', 
-              marginBottom: 'var(--space-6)',
-              color: 'var(--primary)',
-              fontFamily: 'var(--font-primary)'
+              fontWeight: '700', 
+              marginBottom: 'var(--space-10)',
+              color: 'var(--text-primary)',
+              fontFamily: 'var(--font-display)',
+              textAlign: 'center'
             }}>
-              Nuestros Compromisos
+              Nuestros Valores
             </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4">
-                <div style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: 'var(--success)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 style={{ 
-                    fontWeight: '600', 
-                    marginBottom: 'var(--space-2)',
-                    color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-primary)'
-                  }}>
-                    Garantía Extendida
-                  </h4>
-                  <p style={{ 
-                    fontSize: 'var(--text-sm)', 
-                    color: 'var(--text-secondary)',
-                    margin: 0,
-                    fontFamily: 'var(--font-secondary)'
-                  }}>
-                    Todas nuestras motos incluyen garantía de hasta 3 años con cobertura nacional.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-4">
-                <div style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: 'var(--accent)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 5v14M5 12h14"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 style={{ 
-                    fontWeight: '600', 
-                    marginBottom: 'var(--space-2)',
-                    color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-primary)'
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 'var(--space-6)'
+            }}>
+              {[
+                { icon: '⚙️', title: 'Excelencia Técnica', desc: 'Selección rigurosa de marcas premium con garantía de calidad y fiabilidad' },
+                { icon: '🤝', title: 'Confianza', desc: '5,000+ clientes confían en nosotros para encontrar su compañera ideal' },
+                { icon: '⭐', title: 'Premium Service', desc: 'Equipo experto disponible para asesorarte y garantizar tu satisfacción' }
+              ].map((valor, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6))',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(26, 95, 122, 0.1)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: 'var(--space-8)',
+                    textAlign: 'center',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px)';
+                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(26, 95, 122, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.05)';
                   }}>
-                    Financiación Flexible
-                  </h4>
-                  <p style={{ 
-                    fontSize: 'var(--text-sm)', 
-                    color: 'var(--text-secondary)',
-                    margin: 0,
-                    fontFamily: 'var(--font-secondary)'
-                  }}>
-                    Planes de pago personalizados adaptados a tus posibilidades.
-                  </p>
-                </div>
-              </div>
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '120px',
+                    height: '120px',
+                    background: 'radial-gradient(circle, rgba(26, 95, 122, 0.08) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    transform: 'translate(40%, -40%)',
+                    pointerEvents: 'none'
+                  }} />
 
-              <div className="flex items-start gap-4">
-                <div style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: 'var(--primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M5 12h14M12 5v14"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 style={{ 
-                    fontWeight: '600', 
-                    marginBottom: 'var(--space-2)',
+                  <div style={{
+                    fontSize: '48px',
+                    marginBottom: 'var(--space-4)',
+                    position: 'relative',
+                    zIndex: 1
+                  }}>
+                    {valor.icon}
+                  </div>
+                  <h4 style={{
+                    fontSize: 'var(--text-lg)',
+                    fontWeight: '700',
                     color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-primary)'
+                    marginBottom: 'var(--space-3)',
+                    fontFamily: 'var(--font-primary)',
+                    position: 'relative',
+                    zIndex: 1
                   }}>
-                    Entrega Inmediata
+                    {valor.title}
                   </h4>
-                  <p style={{ 
-                    fontSize: 'var(--text-sm)', 
-                    color: 'var(--text-secondary)',
-                    margin: 0,
-                    fontFamily: 'var(--font-secondary)'
+                  <p style={{
+                    fontSize: 'var(--text-sm)',
+                    color: '#64748b',
+                    lineHeight: '1.6',
+                    fontFamily: 'var(--font-secondary)',
+                    position: 'relative',
+                    zIndex: 1
                   }}>
-                    Recibe tu moto en menos de 48h en toda la península.
+                    {valor.desc}
                   </p>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: 'var(--secondary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M5 12h14M12 5v14"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 style={{ 
-                    fontWeight: '600', 
-                    marginBottom: 'var(--space-2)',
-                    color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-primary)'
-                  }}>
-                    Asesoramiento Experto
-                  </h4>
-                  <p style={{ 
-                    fontSize: 'var(--text-sm)', 
-                    color: 'var(--text-secondary)',
-                    margin: 0,
-                    fontFamily: 'var(--font-secondary)'
-                  }}>
-                    Equipo especializado para ayudarte a tomar la mejor decisión.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          <div className="text-center mt-8">
+          {/* Compromisos Section */}
+          <div style={{ marginBottom: 'var(--space-16)' }}>
             <h2 style={{ 
-              fontSize: 'var(--text-4xl)', 
-              fontWeight: 'bold', 
-              marginBottom: 'var(--space-8)',
+              fontSize: 'var(--text-3xl)', 
+              fontWeight: '700', 
+              marginBottom: 'var(--space-10)',
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-display)'
+              fontFamily: 'var(--font-display)',
+              textAlign: 'center'
             }}>
-              Nuestros Números
+              Lo que te Comprometemos
             </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div style={{
-                background: 'linear-gradient(135deg, var(--primary), var(--primary-hover))',
-                color: 'white',
-                padding: 'var(--space-8)',
-                borderRadius: 'var(--radius-lg)',
-                textAlign: 'center',
-                boxShadow: 'var(--shadow-lg)',
-                height: '120px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div style={{ fontSize: 'var(--text-4xl)', fontWeight: 'bold' }}>500+</div>
-                <div style={{ fontSize: 'var(--text-sm)', opacity: 0.9 }}>Motos Vendidas</div>
-              </div>
-              
-              <div style={{
-                background: 'linear-gradient(135deg, var(--accent), var(--accent-600))',
-                color: 'white',
-                padding: 'var(--space-8)',
-                borderRadius: 'var(--radius-lg)',
-                textAlign: 'center',
-                boxShadow: 'var(--shadow-lg)',
-                height: '120px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div style={{ fontSize: 'var(--text-4xl)', fontWeight: 'bold' }}>18</div>
-                <div style={{ fontSize: 'var(--text-sm)', opacity: 0.9 }}>Marcas Premium</div>
-              </div>
-              
-              <div style={{
-                background: 'linear-gradient(135deg, var(--success), var(--success-700))',
-                color: 'white',
-                padding: 'var(--space-8)',
-                borderRadius: 'var(--radius-lg)',
-                textAlign: 'center',
-                boxShadow: 'var(--shadow-lg)',
-                height: '120px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div style={{ fontSize: 'var(--text-4xl)', fontWeight: 'bold' }}>4.9⭐</div>
-                <div style={{ fontSize: 'var(--text-sm)', opacity: 0.9 }}>Valoración Media</div>
-              </div>
-              
-              <div style={{
-                background: 'linear-gradient(135deg, var(--secondary), var(--secondary-700))',
-                color: 'white',
-                padding: 'var(--space-8)',
-                borderRadius: 'var(--radius-lg)',
-                textAlign: 'center',
-                boxShadow: 'var(--shadow-lg)',
-                height: '120px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div style={{ fontSize: 'var(--text-4xl)', fontWeight: 'bold' }}>24h</div>
-                <div style={{ fontSize: 'var(--text-sm)', opacity: 0.9 }}>Soporte Técnico</div>
-              </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: 'var(--space-6)'
+            }}>
+              {[
+                { icon: '✓', title: 'Garantía Extendida', desc: 'Hasta 3 años con cobertura nacional', color: '#10b981' },
+                { icon: '🔄', title: 'Financiación Flexible', desc: 'Planes adaptados a tus posibilidades', color: '#f59e0b' },
+                { icon: '🚀', title: 'Entrega Rápida', desc: 'En menos de 48h en toda la península', color: '#3b82f6' },
+                { icon: '👨‍💼', title: 'Asesoría Expert', desc: 'Especialistas para tu mejor decisión', color: '#8b5cf6' }
+              ].map((compromiso, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    background: '#fff',
+                    border: `2px solid ${compromiso.color}20`,
+                    borderRadius: 'var(--radius-lg)',
+                    padding: 'var(--space-6)',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    gap: 'var(--space-4)',
+                    alignItems: 'flex-start'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = `${compromiso.color}05`;
+                    e.currentTarget.style.borderColor = `${compromiso.color}40`;
+                    e.currentTarget.style.transform = 'translateX(4px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#fff';
+                    e.currentTarget.style.borderColor = `${compromiso.color}20`;
+                    e.currentTarget.style.transform = 'translateX(0)';
+                  }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: compromiso.color,
+                    borderRadius: 'var(--radius-md)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#fff',
+                    fontSize: '20px',
+                    flexShrink: 0,
+                    boxShadow: `0 4px 12px ${compromiso.color}40`
+                  }}>
+                    {compromiso.icon}
+                  </div>
+                  <div>
+                    <h4 style={{
+                      fontWeight: '700',
+                      marginBottom: 'var(--space-2)',
+                      color: 'var(--text-primary)',
+                      fontFamily: 'var(--font-primary)'
+                    }}>
+                      {compromiso.title}
+                    </h4>
+                    <p style={{
+                      fontSize: 'var(--text-sm)',
+                      color: '#64748b',
+                      margin: 0,
+                      fontFamily: 'var(--font-secondary)'
+                    }}>
+                      {compromiso.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div style={{
+            background: 'linear-gradient(135deg, var(--primary) 0%, #1a5f7a 100%)',
+            borderRadius: 'var(--radius-2xl)',
+            padding: 'var(--space-12)',
+            position: 'relative',
+            overflow: 'hidden',
+            textAlign: 'center',
+            color: '#fff'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '-50%',
+              right: '-10%',
+              width: '400px',
+              height: '400px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '50%',
+              pointerEvents: 'none'
+            }} />
+
+            <h2 style={{
+              fontSize: 'var(--text-3xl)',
+              fontWeight: '700',
+              marginBottom: 'var(--space-10)',
+              fontFamily: 'var(--font-display)',
+              position: 'relative',
+              zIndex: 1
+            }}>
+              Por Números
+            </h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: 'var(--space-8)',
+              position: 'relative',
+              zIndex: 1
+            }}>
+              {[
+                { numero: '500+', label: 'Motos Vendidas' },
+                { numero: '10+', label: 'Años Experiencia' },
+                { numero: '5K+', label: 'Clientes Felices' },
+                { numero: '24h', label: 'Soporte Técnico' }
+              ].map((stat, idx) => (
+                <div key={idx} style={{ padding: 'var(--space-4)' }}>
+                  <div style={{
+                    fontSize: 'clamp(2rem, 5vw, 3rem)',
+                    fontWeight: '800',
+                    marginBottom: 'var(--space-2)',
+                    fontFamily: 'var(--font-display)'
+                  }}>
+                    {stat.numero}
+                  </div>
+                  <div style={{
+                    fontSize: 'var(--text-sm)',
+                    opacity: 0.9,
+                    fontFamily: 'var(--font-secondary)'
+                  }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
