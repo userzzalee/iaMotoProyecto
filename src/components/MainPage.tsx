@@ -4,38 +4,280 @@ export const MainPage = () => {
       {/* Hero Section */}
       <div id="inicio" style={{
         padding: 'var(--space-20) 0',
-        background: 'var(--background)',
-        minHeight: '70vh',
+        background: 'linear-gradient(135deg, var(--primary) 0%, #1a5f7a 50%, var(--background) 100%)',
+        minHeight: '85vh',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h1 style={{
-            fontSize: 'var(--text-5xl)',
-            fontWeight: 700,
-            marginBottom: 'var(--space-6)',
-            color: 'var(--text-primary)'
-          }}>OTROMOTOS</h1>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '-50%',
+          right: '-10%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.05)',
+          pointerEvents: 'none'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '-30%',
+          left: '-5%',
+          width: '400px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.03)',
+          pointerEvents: 'none'
+        }} />
 
-          <p style={{
-            fontSize: 'var(--text-lg)',
-            color: 'var(--text-secondary)',
-            maxWidth: 800,
-            margin: '0 auto',
-            lineHeight: 1.6,
-            marginBottom: 'var(--space-8)'
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ 
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '4rem',
+            alignItems: 'center'
           }}>
-            Bienvenido a OTROMOTOS — tu tienda especializada en motocicletas. Aquí encontrarás
-            una selección cuidada de motos nuevas y de ocasión, asesoramiento experto y
-            servicios postventa para que disfrutes tu moto con total tranquilidad.
-          </p>
+            {/* Left Column - Content */}
+            <div>
+              <div style={{
+                display: 'inline-block',
+                background: 'rgba(255, 255, 255, 0.15)',
+                padding: 'var(--space-2) var(--space-4)',
+                borderRadius: 'var(--radius-md)',
+                marginBottom: 'var(--space-6)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <span style={{
+                  fontSize: 'var(--text-xs)',
+                  fontWeight: '600',
+                  color: '#fff',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.2px'
+                }}>
+                  Bienvenido a
+                </span>
+              </div>
 
-          <p style={{
-            color: 'var(--text-muted)'
-          }}>
-            Usa la sección "Catálogo" para explorar nuestras motos disponibles.
-          </p>
+              <h1 style={{
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                fontWeight: 700,
+                marginBottom: 'var(--space-6)',
+                color: '#fff',
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '-0.025em',
+                lineHeight: 1.1
+              }}>
+                OTROMOTOS
+              </h1>
+
+              <p style={{
+                fontSize: 'var(--text-lg)',
+                color: 'rgba(255, 255, 255, 0.95)',
+                maxWidth: 500,
+                lineHeight: 1.8,
+                marginBottom: 'var(--space-8)',
+                fontFamily: 'var(--font-secondary)'
+              }}>
+                Tu tienda especializada en motocicletas. Descubre una selección cuidada de motos nuevas y de ocasión, con asesoramiento experto y servicios postventa excepcionales.
+              </p>
+
+              <div style={{
+                display: 'flex',
+                gap: 'var(--space-4)',
+                flexWrap: 'wrap',
+                marginBottom: 'var(--space-8)'
+              }}>
+                <button style={{
+                  padding: 'var(--space-4) var(--space-8)',
+                  fontSize: 'var(--text-base)',
+                  fontWeight: '600',
+                  border: 'none',
+                  borderRadius: 'var(--radius-md)',
+                  background: '#fff',
+                  color: 'var(--primary)',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition-base)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+                  fontFamily: 'var(--font-primary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+                }}>
+                  Explorar Catálogo
+                </button>
+                
+                <button style={{
+                  padding: 'var(--space-4) var(--space-8)',
+                  fontSize: 'var(--text-base)',
+                  fontWeight: '600',
+                  border: '2px solid #fff',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'transparent',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition-base)',
+                  fontFamily: 'var(--font-primary)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}>
+                  Contactar
+                </button>
+              </div>
+
+              {/* Stats */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: 'var(--space-6)',
+                paddingTop: 'var(--space-8)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div>
+                  <div style={{
+                    fontSize: 'var(--text-3xl)',
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    marginBottom: 'var(--space-2)'
+                  }}>
+                    500+
+                  </div>
+                  <div style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontFamily: 'var(--font-secondary)'
+                  }}>
+                    Motos Vendidas
+                  </div>
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: 'var(--text-3xl)',
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    marginBottom: 'var(--space-2)'
+                  }}>
+                    10+
+                  </div>
+                  <div style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontFamily: 'var(--font-secondary)'
+                  }}>
+                    Años de Experiencia
+                  </div>
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: 'var(--text-3xl)',
+                    fontWeight: 'bold',
+                    color: '#fff',
+                    marginBottom: 'var(--space-2)'
+                  }}>
+                    100%
+                  </div>
+                  <div style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontFamily: 'var(--font-secondary)'
+                  }}>
+                    Satisfacción
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Visual */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              perspective: '1000px'
+            }}>
+              <div style={{
+                width: '100%',
+                maxWidth: '400px',
+                height: '400px',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                borderRadius: 'var(--radius-xl)',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(20px)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)',
+                  pointerEvents: 'none'
+                }} />
+                
+                <svg 
+                  width="280" 
+                  height="280" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="#fff" 
+                  strokeWidth="1.5"
+                  style={{ position: 'relative', zIndex: 1 }}
+                >
+                  <path d="M7 18C6.5 16 5 14 5 10C5 5.58 8.13 2 12 2C15.87 2 19 5.58 19 10C19 14 17.5 16 17 18M9 21H15M10 18H14" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="8" opacity="0.1"/>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Scroll indicator */}
+        <div style={{
+          position: 'absolute',
+          bottom: '30px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          animation: 'bounce 2s infinite'
+        }}>
+          <span style={{
+            fontSize: 'var(--text-xs)',
+            color: 'rgba(255, 255, 255, 0.7)',
+            marginBottom: 'var(--space-2)',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            fontWeight: '600'
+          }}>
+            Descubre más
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <style>{`
+          @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+          }
+        `}</style>
       </div>
 
       {/* Nosotros Section */}
