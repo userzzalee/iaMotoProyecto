@@ -1,4 +1,11 @@
-export const MainPage = () => {
+export const MainPage = ({ onNavigate }: { onNavigate: (page: 'inicio' | 'catalogo' | 'contacto') => void }) => {
+  const scrollToSection = (id: string) => {
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
+  };
+
   return (
     <div style={{ background: 'var(--background)' }}>
       {/* Hero Section */}
@@ -91,50 +98,54 @@ export const MainPage = () => {
                 flexWrap: 'wrap',
                 marginBottom: 'var(--space-8)'
               }}>
-                <button style={{
-                  padding: 'var(--space-4) var(--space-8)',
-                  fontSize: 'var(--text-base)',
-                  fontWeight: '600',
-                  border: 'none',
-                  borderRadius: 'var(--radius-md)',
-                  background: '#fff',
-                  color: 'var(--primary)',
-                  cursor: 'pointer',
-                  transition: 'all var(--transition-base)',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-                  fontFamily: 'var(--font-primary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
-                }}>
+                <button 
+                  onClick={() => onNavigate('catalogo')}
+                  style={{
+                    padding: 'var(--space-4) var(--space-8)',
+                    fontSize: 'var(--text-base)',
+                    fontWeight: '600',
+                    border: 'none',
+                    borderRadius: 'var(--radius-md)',
+                    background: '#fff',
+                    color: 'var(--primary)',
+                    cursor: 'pointer',
+                    transition: 'all var(--transition-base)',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+                    fontFamily: 'var(--font-primary)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+                  }}>
                   Explorar Catálogo
                 </button>
                 
-                <button style={{
-                  padding: 'var(--space-4) var(--space-8)',
-                  fontSize: 'var(--text-base)',
-                  fontWeight: '600',
-                  border: '2px solid #fff',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'transparent',
-                  color: '#fff',
-                  cursor: 'pointer',
-                  transition: 'all var(--transition-base)',
-                  fontFamily: 'var(--font-primary)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}>
+                <button 
+                  onClick={() => onNavigate('contacto')}
+                  style={{
+                    padding: 'var(--space-4) var(--space-8)',
+                    fontSize: 'var(--text-base)',
+                    fontWeight: '600',
+                    border: '2px solid #fff',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'transparent',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    transition: 'all var(--transition-base)',
+                    fontFamily: 'var(--font-primary)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}>
                   Contactar
                 </button>
               </div>
@@ -247,16 +258,26 @@ export const MainPage = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div style={{
-          position: 'absolute',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          animation: 'bounce 2s infinite'
-        }}>
+        <div 
+          onClick={() => scrollToSection('nosotros')}
+          style={{
+            position: 'absolute',
+            bottom: '30px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            animation: 'bounce 2s infinite',
+            cursor: 'pointer',
+            transition: 'all var(--transition-base)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '0.7';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}>
           <span style={{
             fontSize: 'var(--text-xs)',
             color: 'rgba(255, 255, 255, 0.7)',

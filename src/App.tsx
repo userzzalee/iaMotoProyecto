@@ -65,7 +65,7 @@ function AppContent(): JSX.Element {
         onNavigate={(p) => setCurrentPage(p as any)}
       />
 
-      {currentPage === 'inicio' && <MainPage />}
+      {currentPage === 'inicio' && <MainPage onNavigate={setCurrentPage} />}
 
       {currentPage === 'catalogo' && (
         <div id="catalogo" style={{ background: 'var(--background)' }}>
